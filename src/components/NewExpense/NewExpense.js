@@ -15,7 +15,7 @@ const NewExpense = (props) => {
 
   return (
     <div className='new-expense'>
-      <ExpenseForm onsaveExpenseData = {saveExpenseDataHandler} />
+      <ExpenseForm onsaveExpenseData = {saveExpenseDataHandler} httpError={props.error}/>
     </div>
   );
 };

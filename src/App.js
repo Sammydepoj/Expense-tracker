@@ -6,7 +6,7 @@ import NewExpense from "./components/NewExpense/NewExpense";
 function App() {
   const [expensesData, setExpensesData] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
-  // const [httpError, sethttpError] = useState();
+  const [httpError, sethttpError] = useState("");
   useEffect(() => {
     const fetchExpenses = async () => {
       const response = await fetch(
@@ -52,7 +52,7 @@ function App() {
   // }
 
   const addExpenseHandler = async (expense) => {
-    // try {
+    try {
       const saveData = await fetch(
         "https://react-http-dff7f-default-rtdb.firebaseio.com/expenses.json",
         {
@@ -67,14 +67,18 @@ function App() {
       setExpensesData((prevExpenses) => {
         return [expense, ...prevExpenses];
       });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    } catch (error) {
+      console.log(error);
+      sethttpError(error.message);
+    }
   };
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
+      <NewExpense
+        onAddExpense={addExpenseHandler}
+        error={httpError ? httpError : ""}
+      />
       <Expenses items={expensesData} />
     </div>
   );
