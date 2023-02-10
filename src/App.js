@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const fetchExpenses = async () => {
       const response = await fetch(
-        "https://react-http-dff7f-default-rtdb.firebaseio.com/expenses.json"
+        "https://reacts-http-dff7f-default-rtdb.firebaseio.com/expenses.json"
       );
       if (!response.ok) {
         throw new Error("Something went wrong!");
@@ -30,7 +30,7 @@ function App() {
     };
     fetchExpenses().catch((error) => {
       // setIsLoading(false);
-      // sethttpError(error.message);
+      sethttpError(error.message);
       console.log(error.message);
     });
   }, []);
@@ -39,14 +39,6 @@ function App() {
   //   return (
   //     <section>
   //       <p>Loading...</p>
-  //     </section>
-  //   );
-  // }
-
-  // if (httpError) {
-  //   return (
-  //     <section>
-  //       <p>{httpError}</p>
   //     </section>
   //   );
   // }
