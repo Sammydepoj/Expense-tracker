@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const fetchExpenses = async () => {
       const response = await fetch(
-        "https://reacts-http-dff7f-default-rtdb.firebaseio.com/expenses.json"
+        "https://react-http-dff7f-default-rtdb.firebaseio.com/expenses.json"
       );
       if (!response.ok) {
         throw new Error("Something went wrong!");
