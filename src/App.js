@@ -51,10 +51,25 @@ function App() {
   //   );
   // }
 
-  const addExpenseHandler = (expense) => {
-    setExpensesData((prevExpenses) => {
-      return [expense, ...prevExpenses];
-    });
+  const addExpenseHandler = async (expense) => {
+    // try {
+      const saveData = await fetch(
+        "https://react-http-dff7f-default-rtdb.firebaseio.com/expenses.json",
+        {
+          method: "POST",
+          body: JSON.stringify(expense),
+        }
+      );
+      console.log(saveData);
+      if (!saveData.ok) {
+        throw new Error("Failed to Save !");
+      }
+      setExpensesData((prevExpenses) => {
+        return [expense, ...prevExpenses];
+      });
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   return (
