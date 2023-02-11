@@ -67,7 +67,6 @@ function App() {
       sethttpError(error.message);
     }
   };
-
   return (
     <div>
       <NewExpense

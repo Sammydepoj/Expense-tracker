@@ -6,6 +6,8 @@ const ExpenseForm = (props) => {
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
+  const [titleInputIsTouched, setTitleInputIsTouched] = useState(false);
+
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
   };
@@ -18,6 +20,10 @@ const ExpenseForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    setTitleInputIsTouched(true);
+    if (!titleInputIsTouched) {
+      return;
+    }
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
@@ -30,6 +36,11 @@ const ExpenseForm = (props) => {
     setEnteredAmount("");
     setEnteredDate("");
   };
+  const titleBlurHandler = () => {
+    setTitleInputIsTouched(true);
+  };
+  const amountBlurHandler = () => {};
+  const dateBlurHandler = () => {};
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -39,6 +50,7 @@ const ExpenseForm = (props) => {
             type="text"
             value={enteredTitle}
             onChange={titleChangeHandler}
+            onBlur={titleBlurHandler}
           />
         </div>
         <div className="new-expense__control">
@@ -49,6 +61,7 @@ const ExpenseForm = (props) => {
             step="0.01"
             value={enteredAmount}
             onChange={amountChangeHandler}
+            onBlur={amountBlurHandler}
           />
         </div>
         <div className="new-expense__control">
@@ -59,6 +72,7 @@ const ExpenseForm = (props) => {
             max="2022-12-31"
             value={enteredDate}
             onChange={dateChangeHandler}
+            onBlur={dateBlurHandler}
           />
         </div>
       </div>
