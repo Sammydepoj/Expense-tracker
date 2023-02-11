@@ -53,6 +53,9 @@ function App() {
         }
       );
       console.log(saveData);
+      if (!saveData) {
+        throw new Error("Something went wrong !");
+      }
       if (!saveData.ok) {
         throw new Error("Failed to Save !");
       }
