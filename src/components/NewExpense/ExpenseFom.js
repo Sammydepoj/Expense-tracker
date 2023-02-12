@@ -3,25 +3,60 @@ import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
-
   const [titleInputIsTouched, setTitleInputIsTouched] = useState(false);
+
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [amountInputIsTouched, setAmountInputIsTouched] = useState(false);
+
+  const [enteredDate, setEnteredDate] = useState("");
+  const [dateInputIsTouched, setDateInputIsTouched] = useState(false);
+
+  const enteredTitleIsValid = enteredTitle.trim() !== "";
+  const titleIsValid = !enteredTitleIsValid && titleInputIsTouched;
+
+  const enteredAmountIsValid = enteredAmount.trim() !== "";
+  const amountIsValid = !enteredAmountIsValid && amountInputIsTouched;
+
+  const enteredDateIsValid = enteredDate.trim() !== "";
+  const dateIsValid = !enteredDateIsValid && dateInputIsTouched;
+
+  let formIsValid = false;
+
+  if (enteredTitle && enteredAmount && enteredDate) {
+    formIsValid = true;
+  }
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
   };
+
+  const titleBlurHandler = () => {
+    setTitleInputIsTouched(true);
+  };
+
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
   };
+
+  const amountBlurHandler = () => {
+    setAmountInputIsTouched(true);
+  };
+
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
+  };
+
+  const dateBlurHandler = () => {
+    setDateInputIsTouched(true);
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
     setTitleInputIsTouched(true);
-    if (!titleInputIsTouched) {
+    setAmountInputIsTouched(true);
+    setDateInputIsTouched(true);
+
+    if (!enteredTitle && !enteredAmount && !enteredDate) {
       return;
     }
     const expenseData = {
@@ -36,11 +71,6 @@ const ExpenseForm = (props) => {
     setEnteredAmount("");
     setEnteredDate("");
   };
-  const titleBlurHandler = () => {
-    setTitleInputIsTouched(true);
-  };
-  const amountBlurHandler = () => {};
-  const dateBlurHandler = () => {};
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
