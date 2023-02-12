@@ -61,6 +61,9 @@ function App() {
       }
       if (saveData.ok) {
         sethttpError("Expense Successfully Saved !");
+        setTimeout(() => {
+          sethttpError("");
+        }, 3000);
       }
       setExpensesData((prevExpenses) => {
         return [expense, ...prevExpenses];
