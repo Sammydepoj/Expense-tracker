@@ -59,6 +59,9 @@ function App() {
       if (!saveData.ok) {
         throw new Error("Failed to Save !");
       }
+      if (saveData.ok) {
+        sethttpError("Expense Successfully Saved !");
+      }
       setExpensesData((prevExpenses) => {
         return [expense, ...prevExpenses];
       });
@@ -69,10 +72,7 @@ function App() {
   };
   return (
     <div>
-      <NewExpense
-        onAddExpense={addExpenseHandler}
-        error={httpError ? httpError : ""}
-      />
+      <NewExpense onAddExpense={addExpenseHandler} error={httpError} />
       <Expenses items={expensesData} />
     </div>
   );

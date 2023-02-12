@@ -68,8 +68,13 @@ const ExpenseForm = (props) => {
     props.onsaveExpenseData(expenseData);
 
     setEnteredTitle("");
+    setTitleInputIsTouched(false);
+
     setEnteredAmount("");
+    setAmountInputIsTouched(false);
+
     setEnteredDate("");
+    setDateInputIsTouched(false);
   };
 
   const amountInputClasses = amountIsValid
@@ -94,6 +99,7 @@ const ExpenseForm = (props) => {
             onChange={titleChangeHandler}
             onBlur={titleBlurHandler}
           />
+          {titleIsValid && <p className="error-text">Please input a title !</p>}
         </div>
         <div className={amountInputClasses}>
           <label>Amount</label>
@@ -105,6 +111,11 @@ const ExpenseForm = (props) => {
             onChange={amountChangeHandler}
             onBlur={amountBlurHandler}
           />
+          {amountIsValid && (
+            <p className="error-text">
+              Please type or select the amount for the item purchased !
+            </p>
+          )}
         </div>
         <div className={dateInputClasses}>
           <label>Date</label>
@@ -116,6 +127,7 @@ const ExpenseForm = (props) => {
             onChange={dateChangeHandler}
             onBlur={dateBlurHandler}
           />
+          {dateIsValid && <p className="error-text">Please pick a date !</p>}
         </div>
       </div>
       <div className="new-expense__actions">
@@ -123,7 +135,7 @@ const ExpenseForm = (props) => {
           Add Expense
         </button>
       </div>
-      <p>{props.httpError}</p>
+      <p className="error-text">{props.httpError}</p>
     </form>
   );
 };
