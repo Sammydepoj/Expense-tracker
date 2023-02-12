@@ -1,26 +1,47 @@
 .new-expense__controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    text-align: left;
-  }
-  
-  .new-expense__control label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-  
-  .new-expense__control input {
-    font: inherit;
-    padding: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 20rem;
-    max-width: 100%;
-  }
-  
-  .new-expense__actions {
-    text-align: right;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.new-expense__control label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.new-expense__control input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20rem;
+  max-width: 100%;
+}
+
+.new-expense__actions {
+  text-align: right;
+}
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color: #ccc;
+  color: red;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+.invalid input {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
+.invalid input:focus {
+  border-color: #ff8800;
+  background-color: #fbe8d2;
+}
+
+.error-text {
+  color: #b40e0e;
+}

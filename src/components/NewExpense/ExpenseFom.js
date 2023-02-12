@@ -71,10 +71,22 @@ const ExpenseForm = (props) => {
     setEnteredAmount("");
     setEnteredDate("");
   };
+
+  const amountInputClasses = amountIsValid
+    ? "new-expense__control invalid"
+    : "new-expense__control";
+  const titleInputClasses = titleIsValid
+    ? "new-expense__control invalid"
+    : "new-expense__control";
+
+  const dateInputClasses = dateIsValid
+    ? "new-expense__control invalid"
+    : "new-expense__control";
+
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
-        <div className="new-expense__control">
+        <div className={titleInputClasses}>
           <label>Title</label>
           <input
             type="text"
@@ -83,7 +95,7 @@ const ExpenseForm = (props) => {
             onBlur={titleBlurHandler}
           />
         </div>
-        <div className="new-expense__control">
+        <div className={amountInputClasses}>
           <label>Amount</label>
           <input
             type="number"
@@ -94,7 +106,7 @@ const ExpenseForm = (props) => {
             onBlur={amountBlurHandler}
           />
         </div>
-        <div className="new-expense__control">
+        <div className={dateInputClasses}>
           <label>Date</label>
           <input
             type="date"
@@ -107,7 +119,9 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="submit">Add Expense</button>
+        <button type="submit" disabled={!formIsValid}>
+          Add Expense
+        </button>
       </div>
       <p>{props.httpError}</p>
     </form>
