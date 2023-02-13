@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Expenses from "./components/Expenses/Expenses";
+import DeleteExpense from "./components/NewExpense/DeleteExpense";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
@@ -24,9 +25,11 @@ function App() {
           title: responseData[key].title,
           amount: responseData[key].amount,
           date: new Date(responseData[key].date),
+          number: responseData[key].id,
         });
       }
       setExpensesData(loadedExpenses);
+      // console.log(expensesData);
     };
     fetchExpenses().catch((error) => {
       // setIsLoading(false);
@@ -34,14 +37,6 @@ function App() {
       console.log(error.message);
     });
   }, []);
-
-  // if (isLoading) {
-  //   return (
-  //     <section>
-  //       <p>Loading...</p>
-  //     </section>
-  //   );
-  // }
 
   const addExpenseHandler = async (expense) => {
     try {
@@ -73,9 +68,16 @@ function App() {
       sethttpError(error.message);
     }
   };
+
+  const deleteExpenseHandler = async (expense) => {};
+
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} error={httpError} />
+      <DeleteExpense
+        onDeleteExpenseData={deleteExpenseHandler}
+        error={httpError}
+      />
       <Expenses items={expensesData} />
     </div>
   );

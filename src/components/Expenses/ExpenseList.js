@@ -15,6 +15,7 @@ const ExpenseList = (props) => {
               title={expense.title}
               amount={expense.amount}
               date={expense.date}
+              number={expense.number}
             />
           ))}
         </ul>
